@@ -9,13 +9,13 @@ def terminal_visualisation(state: str) -> None:
             if state[i] == 'N':
                 board += "  |\n"
             else:
-                board += f" {state[i]} |\n"
+                board += f" {state[i]}|\n"
         else:
             if state[i] == 'N':
-                board += "  |"
+                board += "  | "
             else:
-                board += f" {state[i]} |"
+                board += f" {state[i]}| "
     
     print(board)
 
-terminal_visualisation("NNNNNNNNN")
+terminal_visualisation("XNNXXNNN0")
