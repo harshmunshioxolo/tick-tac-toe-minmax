@@ -17,5 +17,3 @@ def terminal_visualisation(state: str) -> None:
                 board += f" {state[i]}| "
     
     print(board)
-
-terminal_visualisation("XNNXXNNN0")
