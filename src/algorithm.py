@@ -78,7 +78,6 @@ class State:
                 tree = self.find_next_children("mini")
                 for child in tree:
                     # check if the children have hit the winning condition
-
                     self.state = child
                     # expand the child if winning position is not true
                     if (not self.check_winning_positions("mini")):
@@ -87,7 +86,7 @@ class State:
                             tree.append(c)
                     else:
                         # this means there is a terminal condition
-                        return child
+                        return close[-1]
     
 
 if __name__=="__main__":
