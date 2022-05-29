@@ -22,6 +22,7 @@ class State:
         # check winning positions in case it is achieved before the state is complete
         # 1. check horizonal positions
         # sample = 'N N N N N N N N N'
+        print(self.state)
         if (self.state[0] == self.state[1] and self.state[1] == self.state[2] and self.state[0] != 'N' and self.state[2] != 'N'):
             return score
         elif (self.state[3] == self.state[4] and self.state[4] == self.state[5] and self.state[3] != 'N' and self.state[5] != 'N'):
@@ -72,18 +73,21 @@ class State:
             # check if board is either full or someone has won
             score = []
             tree = []
+            close = []
             while(not self.check_terminating_condition()):
                 tree = self.find_next_children("mini")
-                print(tree)
                 for child in tree:
                     # check if the children have hit the winning condition
-                    print(child)
+
                     self.state = child
                     # expand the child if winning position is not true
                     if (not self.check_winning_positions("mini")):
-                        tree.append(self.find_next_children("mini"))     
-                    else: 
-                        tree.append(self.find_next_children("mini"))
+                        children = self.find_next_children("mini")
+                        for c in children:
+                            tree.append(c)
+                    else:
+                        # this means there is a terminal condition
+                        return child
     
 
 if __name__=="__main__":
@@ -101,5 +105,12 @@ if __name__=="__main__":
         board.state = "".join(s)
 
         # compute the next best move
-        # while (not board.check_terminating_condition()):
-        board.next_best_move("mini")
+        while (not board.check_terminating_condition()):
+            next_move = board.next_best_move("mini")
+            terminal_visualisation(next_move)
+
+            x = input(f"Your next move?: ")
+            # [i,j] ==> The index for the string will be i+j
+            s = list(board.state)
+            s[int(x)] = "X"
+            board.state = "".join(s)
