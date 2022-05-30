@@ -1,10 +1,12 @@
 from visualization import terminal_visualisation
+from state import State
 
-class State:
+class Game:
     """Class to initialize and maintain the state of the board
     """
     def __init__(self, start: str) -> None:
-        self.state = 'N'*9
+        # initialize the state the can keep the track in future
+        self.state = State(parent=None, value='N'*9)
         self.start = start
         self.score = 0
     
